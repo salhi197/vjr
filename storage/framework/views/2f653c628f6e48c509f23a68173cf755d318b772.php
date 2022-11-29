@@ -155,12 +155,17 @@
                     </li>
 
                     <li class="menu">
-                        <a href="#more" data-active="false" class="menu-toggle">
+                        <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" data-active="false" class="menu-toggle">
                             <div class="base-menu">
                                 <div class="base-icons">
                                     <img src="<?php echo e(asset('vjr/assets/img/log-out.png')); ?>" width="29px">
                                 </div>
                                 <span class="">Déconnexion</span>
+                                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                    <?php echo e(csrf_field()); ?>
+
+                                </form>                                
+
                             </div>
                         </a>
                     </li>
