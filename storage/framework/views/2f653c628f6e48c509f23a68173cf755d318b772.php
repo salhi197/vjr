@@ -18,9 +18,10 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link href="plugins/apex/apexcharts.css')}}" rel="stylesheet" type="text/css">
+    <link href="<?php echo e(asset('vjr/plugins/apex/apexcharts.css')); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo e(asset('vjr/assets/css/dashboard/dash_1.css')); ?>" rel="stylesheet" type="text/css" class="dashboard-analytics" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <?php echo $__env->yieldContent('styles'); ?>
 
 </head>
 
@@ -64,7 +65,7 @@
             <nav id="compactSidebar">
             <ul class="menu-categories">
                     <li class="menu menu menu-single">
-                        <a href="<?php echo e(route('admin')); ?>" data-active="false"  class="menu-toggle">
+                        <a href="<?php echo e(route('admin')); ?>" data-active="<?php echo e(Route::is('admin') ? 'true' : ''); ?>"  class="menu-toggle">
                             <div class="base-menu">
                                 <div class="base-icons">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -79,7 +80,7 @@
                         </a>
                     </li>
                     <li class="menu menu-single">
-                        <a href="<?php echo e(route('reglement.index')); ?>" data-active="false" class="menu-toggle">
+                        <a data-active="<?php echo e(Route::is('reglement.index') ? 'true' : ''); ?>" href="<?php echo e(route('reglement.index')); ?>" data-active="false" class="menu-toggle">
                             <div class="base-menu">
                                 <div class="base-icons">
                                     <img src="<?php echo e(asset('vjr/assets/img/re.png')); ?>" width="29px">
@@ -101,7 +102,7 @@
                     </li>
 
                     <li class="menu menu-single">
-                        <a href="./Utilisateurs.html" data-active="false" class="menu-toggle">
+                        <a href="<?php echo e(route('user.index')); ?>"  data-active="<?php echo e(Route::is('user.index') ? 'true' : ''); ?>"  class="menu-toggle">
                             <div class="base-menu">
                                 <div class="base-icons">
                                     <img src="<?php echo e(asset('vjr/assets/img/us.png')); ?>" width="29px">
@@ -144,7 +145,7 @@
                         </a>
                     </li>
                     <li class="menu menu-single">
-                        <a href="widgets.html" data-active="false" class="menu-toggle">
+                        <a href="<?php echo e(route('rapport')); ?>" data-active="false" class="menu-toggle">
                             <div class="base-menu">
                                 <div class="base-icons">
                                     <img src="<?php echo e(asset('vjr/assets/img/chart.png')); ?>" width="29px">
@@ -1419,8 +1420,9 @@
 
        
         <script src="<?php echo e(asset('vjr/plugins/apex/apexcharts.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('vjr/assets/js/dashboard/dash_1.js')); ?>"></script>
-                                        
+        <script src="<?php echo e(asset('vjr/assets/js/dashboard/dash_1.js')); ?>"></script>  
+        <?php echo $__env->yieldContent('scripts'); ?>
+
 
 </body>
 

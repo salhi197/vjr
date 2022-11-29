@@ -1,13 +1,9 @@
-@extends('layouts.ui')
-
-
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="row layout-top-spacing" id="cancel-row">
 
     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-        <a class="btn btn-danger mb-2" href="{{route('reglement.create')}}">+ Ajouter</a>
+        <a class="btn btn-danger mb-2" href="<?php echo e(route('reglement.create')); ?>">+ Ajouter</a>
 
         <div class="widget-content widget-content-area br-6">
 
@@ -25,35 +21,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($reglements as $reglement)
-                    <tr>
-                        <td>{{$reglement->id ?? ''}} </td>
-                        <td>{{$reglement->type ?? ''}} </td>
-                        <td>{{$reglement->titre ?? ''}} </td>
-                        <td>{{$reglement->ladate ?? ''}} </td>
-                        <td>{{$reglement->organisme ?? ''}} </td>
-                        <td>{{$reglement->secteur ?? ''}} </td>
-                        <td>{{$reglement->contenu ?? ''}} </td>
+                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                        <td>
-                            <div class="table-action">
-                                <a class="btn btn-outline-primary btn-sm"
-                                    href="{{route('reglement.edit',['reglement'=>$reglement->id])}}">
-                                    Voir
-                                </a>
-                                <a class="btn btn-outline-danger btn-sm"
-                                    href="{{route('reglement.destroy',['reglement'=>$reglement->id])}}">
-                                    Supprimer
-                                </a>
-
-
-
-
-                            </div>
-                        </td>
-                    </tr>
-
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
 
 
@@ -65,14 +35,14 @@
 </div>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
-        <script src="{{asset('vjr/assets/js/custom.js')}}"></script>
+<?php $__env->startSection('scripts'); ?>
+        <script src="<?php echo e(asset('vjr/assets/js/custom.js')); ?>"></script>
         <!-- END GLOBAL MANDATORY SCRIPTS -->
 
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="{{asset('vjr/plugins/table/datatable/datatables.js')}}"></script>
+        <script src="<?php echo e(asset('vjr/plugins/table/datatable/datatables.js')); ?>"></script>
         <script>
             $(document).ready(function() {
                 $('table.multi-table').DataTable({
@@ -102,12 +72,14 @@
             });
         </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('styles')
+<?php $__env->startSection('styles'); ?>
 
-    <link rel="stylesheet" type="text/css" href="{{asset('vjr/plugins/table/datatable/datatables.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('vjr/plugins/table/datatable/dt-global_style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('vjr/plugins/table/datatable/custom_dt_multiple_tables.css')}}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('vjr/plugins/table/datatable/datatables.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('vjr/plugins/table/datatable/dt-global_style.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('vjr/plugins/table/datatable/custom_dt_multiple_tables.css')); ?>">
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.ui', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

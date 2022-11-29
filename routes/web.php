@@ -13,6 +13,7 @@
 
 
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
+Route::get('/rapport', 'HomeController@rapport')->name('rapport');
 Route::post('/login/admin', 'Auth\LoginController@adminLogin')->name('login.admin');
 
 

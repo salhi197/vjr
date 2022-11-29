@@ -1,142 +1,87 @@
-@extends('layouts.app')
+@extends('layouts.ui')
 
 
 
 @section('content')
 
-					<div class="page-header">
-						<h4 class="page-title">{{trans('liste des utilisateurs')}}</h4>
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active" aria-current="page">{{trans('users')}}</li>
-						</ol>
+<div class="row layout-top-spacing" id="cancel-row">
 
-					</div>
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <a class="btn btn-danger mb-2" href="{{route('reglement.create')}}">+ Ajouter</a>
 
+        <div class="widget-content widget-content-area br-6">
 
-                    <div class="row">
+            <table class="multi-table table table-hover" style="width:100%">
+                <thead class="text-primary">
+                    <tr>
+                        <th>ID User</th>
+                        <th>type</th>
+                        <th>titre</th>
+                        <th>ladate</th>
+                        <th>organisme</th>
+                        <th>secteur</th>
+                        <th>contenu</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
 
-                            <div class="card-header">
-                                <a class="btn btn-primary text-white" href="{{route('user.show.create')}}">
-                                    <i class="fa fa-plus">
-
-                                    </i>
-                                    Ajouter utilisateur
-                                </a>
-
-                            </div>
-                            <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-    										<table id="datatable-5" class="table card-table table-striped table-bordered text-nowrap w-100">
-                                                <thead class="text-primary">
-                                                    <tr>
-                                                        <th>ID User</th>
-                                                        <th>Nom Penom</th>
-                                                        @if(Auth::guard('admin')->user()->agent == 0)
-                                                            <th>Etat</th>
-                                                        @endif                                                        
-                                                        <th>Email</th>
-                                                        @if(Auth::guard('admin')->user()->agent == 0)
-                                                        <th>{{trans('main.password')}}</th>
-                                                        
-                                                        <th>telephone</th>
-                                                        <th> Actif</th>
-
-                                                        @endif
-                                                        <th>Date Entré</th>
-                                                        @if(Auth::guard('admin')->user()->agent == 0)
-                                                        <th>Action</th>
-                                                        @endif
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($users as $user)
-                                                        <tr>
-                                                        <td>
-                                                            {{$user->id ?? ''}}
-                                                            </td>
-                                                            
-                                                            <td>
-                                                                <a href="{{route('user.detail',['user'=>$user->id])}}">
-                                                                {{$user->name ?? ''}}
-                                                                {{$user->nom ?? ''}}
-                                                                </a>
-                                                            </td>                                                            
-                                                            @if(Auth::guard('admin')->user()->agent == 0)
-                                                            <td>
-                                                            @if($user->type == 0)
-                                                                <span class="badge badge-danger">Déactivé</span>
-                                                            @else
-                                                                <span class="badge badge-primary">Activé</span>
-                                                            @endif
-
-                                                            </td>
-                                                            @endif
-                                                            <td>
-                                                                {{$user->email ?? ''}}                                                            
-                                                            </td>
-                                                            @if(Auth::guard('admin')->user()->agent == 0)
-                                                            <td>
-                                                                {{$user->password_text ?? ''}}                                                            
-                                                            </td>
-                                                            
-                                                            <td>
-                                                                {{$user->telephone ?? ''}}                                                            
-                                                            </td>
-                                                            <td>
-                                                                {{$user->solde_actif ?? ''}} $
-                                                            </td>
-
-                                                            @endif
+                    @endforeach
+                </tbody>
 
 
-                                                            <td>
-                                                                {{$user->created_at ?? ''}}
-                                                            </td>
-                                                            @if(Auth::guard('admin')->user()->agent == 0)
-                                                            <td >
-                                                                <div class="table-action">  
-                                                                    <a class="btn btn-primary text-white" href="{{route('user.edit',['user'=>$user->id])}}">
-                                                                        Edit
-                                                                    </a>
-                                                                    <a class="btn btn-danger text-white" onclick="return confirm('Etes vous sure ?')" href="{{route('user.delete',['user'=>$user->id])}}">
-                                                                        Supprimer
-                                                                    </a>
+            </table>
 
-                                                            @if($user->type == 0)
-                                                                    <a class="btn btn-success text-white" href="{{route('user.ActiverDesactiver',['user'=>$user->id])}}">
-                                                                        Activer
-                                                                    </a>
-                                                            @else
-                                                                    <a class="btn btn-warning text-white" href="{{route('user.ActiverDesactiver',['user'=>$user->id])}}">
-                                                                        Désactiver
-                                                                    </a>
+        </div>
+    </div>
 
-                                                            @endif
-                                                                    
-
-                                                                </div>
-                                                            </td>
-                                                            @endif
-                                                        </tr>
-
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-                    </div>
-
-
-
+</div>
 
 
 @endsection
 
+@section('scripts')
+        <script src="{{asset('vjr/assets/js/custom.js')}}"></script>
+        <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="{{asset('vjr/plugins/table/datatable/datatables.js')}}"></script>
+        <script>
+            $(document).ready(function() {
+                $('table.multi-table').DataTable({
+                    "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
+                        "<'table-responsive'tr>" +
+                        "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+                    "oLanguage": {
+                        "oPaginate": {
+                            "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+                            "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
+                        },
+                        "sInfo": "Page _PAGE_ sur _PAGES_ ",
+                        "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                        "sSearchPlaceholder": "Search...",
+                        "sLengthMenu": "Résultats :  _MENU_",
+                    },
+                    "stripeClasses": [],
+                    "lengthMenu": [7, 10, 20, 50],
+                    "pageLength": 7,
+                    drawCallback: function() {
+                        $('.t-dot').tooltip({
+                            template: '<div class="tooltip status" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+                        })
+                        $('.dataTables_wrapper table').removeClass('table-striped');
+                    }
+                });
+            });
+        </script>
+
+@endsection
 
 @section('styles')
-<link href="{{asset('assets/plugins/datatable/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{{asset('vjr/plugins/table/datatable/datatables.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('vjr/plugins/table/datatable/dt-global_style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('vjr/plugins/table/datatable/custom_dt_multiple_tables.css')}}">
+
 @endsection
