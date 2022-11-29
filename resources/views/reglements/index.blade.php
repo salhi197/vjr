@@ -16,7 +16,6 @@
                                                     <tr>
                                                         <th>ID User</th>
                                                         <th>type</th>
-                                                        <th>contenu</th>
                                                         <th>titre</th>
                                                         <th>ladate</th>
                                                         <th>organisme</th>
@@ -30,7 +29,6 @@
                                                         <tr>
                                                             <td>{{$reglement->id ?? ''}} </td>
                                                             <td>{{$reglement->type ?? ''}} </td>
-                                                            <td>{{$reglement->contenu ?? ''}} </td>
                                                             <td>{{$reglement->titre ?? ''}} </td>
                                                             <td>{{$reglement->ladate ?? ''}} </td>
                                                             <td>{{$reglement->organisme ?? ''}} </td>

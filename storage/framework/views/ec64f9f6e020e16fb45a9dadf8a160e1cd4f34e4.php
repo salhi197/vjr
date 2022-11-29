@@ -12,7 +12,6 @@
                                                     <tr>
                                                         <th>ID User</th>
                                                         <th>type</th>
-                                                        <th>contenu</th>
                                                         <th>titre</th>
                                                         <th>ladate</th>
                                                         <th>organisme</th>
@@ -26,7 +25,6 @@
                                                         <tr>
                                                             <td><?php echo e($reglement->id ?? ''); ?> </td>
                                                             <td><?php echo e($reglement->type ?? ''); ?> </td>
-                                                            <td><?php echo e($reglement->contenu ?? ''); ?> </td>
                                                             <td><?php echo e($reglement->titre ?? ''); ?> </td>
                                                             <td><?php echo e($reglement->ladate ?? ''); ?> </td>
                                                             <td><?php echo e($reglement->organisme ?? ''); ?> </td>
