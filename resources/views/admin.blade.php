@@ -163,7 +163,7 @@
 
             <div class="media">
                 <div class="w-img">
-                    <img src="assets/img/90x90.jpg" alt="avatar">
+                    <img src="{{asset('vjr/assets/img/90x90.jpg')}}" alt="avatar">
                 </div>
                 <div class="media-body">
                     <h6>Mokhtar Ferchiche</h6>
@@ -635,7 +635,7 @@
 
             <div class="media">
                 <div class="w-img">
-                    <img src="assets/img/90x90.jpg" alt="avatar">
+                    <img src="{{asset('vjr/assets/img/90x90.jpg')}}" alt="avatar">
                 </div>
                 <div class="media-body">
                     <h6>Dev Summit - New York</h6>
@@ -646,10 +646,10 @@
             <div class="card-bottom-section">
                 <h5>4 Members Going</h5>
                 <div class="img-group">
-                    <img src="assets/img/90x90.jpg" alt="avatar">
-                    <img src="assets/img/90x90.jpg" alt="avatar">
-                    <img src="assets/img/90x90.jpg" alt="avatar">
-                    <img src="assets/img/90x90.jpg" alt="avatar">
+                    <img src="{{asset('vjr/assets/img/90x90.jpg')}}" alt="avatar">
+                    <img src="{{asset('vjr/assets/img/90x90.jpg')}}" alt="avatar">
+                    <img src="{{asset('vjr/assets/img/90x90.jpg')}}" alt="avatar">
+                    <img src="{{asset('vjr/assets/img/90x90.jpg')}}" alt="avatar">
                 </div>
                 <a href="javascript:void(0);" class="btn">View Details</a>
             </div>
@@ -728,13 +728,13 @@
                         <span class="avatar-title">+6</span>
                     </div>
                     <div class="avatar translateY-axis">
-                        <img alt="avatar" src="assets/img/90x90.jpg" />
+                        <img alt="avatar" src="{{asset('vjr/assets/img/90x90.jpg')}}" />
                     </div>
                     <div class="avatar translateY-axis">
-                        <img alt="avatar" src="assets/img/90x90.jpg" />
+                        <img alt="avatar" src="{{asset('vjr/assets/img/90x90.jpg')}}" />
                     </div>
                     <div class="avatar translateY-axis">
-                        <img alt="avatar" src="assets/img/90x90.jpg" />
+                        <img alt="avatar" src="{{asset('vjr/assets/img/90x90.jpg')}}" />
                     </div>
 
                 </div>
