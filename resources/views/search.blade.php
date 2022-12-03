@@ -54,7 +54,8 @@
                             <div class="blog_item_img">
                                 <a href="#" class="blog_item_date">
                                     <h5 class="blog_item_date1">Nombre des Résultat : {{count($results)}}</h5>
-                                   
+
+                                
                                 </a>
                             </div>
                             @foreach($results as $result)
