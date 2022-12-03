@@ -48,6 +48,13 @@ class ReglementController extends Controller
         return view('reglements.edit',compact('reglement'));
     }
 
+
+    public function view($reglement_id)
+    {
+        $reglement = Reglement::find($reglement_id);
+
+        return view('result',compact('reglement'));
+    }    
     public function destroy($reglement_id)
     {
         $reglement = Reglement::find($reglement_id);

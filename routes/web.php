@@ -18,19 +18,19 @@ Route::post('/login/admin', 'Auth\LoginController@adminLogin')->name('login.admi
 
 
 
-Route::get('/cleareverything', function () {
-    $clearcache = Artisan::call('cache:clear');
-    echo "Cache cleared<br>";
+// Route::get('/cleareverything', function () {
+//     $clearcache = Artisan::call('cache:clear');
+//     echo "Cache cleared<br>";
 
-    $clearview = Artisan::call('view:clear');
-    echo "View cleared<br>";
+//     $clearview = Artisan::call('view:clear');
+//     echo "View cleared<br>";
 
-    $clearconfig = Artisan::call('config:cache');
-    echo "Config cleared<br>";
+//     $clearconfig = Artisan::call('config:cache');
+//     echo "Config cleared<br>";
 
-    $cleardebugbar = Artisan::call('debugbar:clear');
-    echo "Debug Bar cleared<br>";
-});
+//     $cleardebugbar = Artisan::call('debugbar:clear');
+//     echo "Debug Bar cleared<br>";
+// });
 
 Route::get('/faq', function () {return view('faq');})->name('faq')->middleware('lang');
 Route::get('/support', function () {return view('support');})->name('support')->middleware('lang') ;
@@ -43,19 +43,17 @@ Route::get('/recharger-compte', function () {
 Route::get('/admin', 'AdminController@admin')->name('admin');
 
 Route::view('/comingsoon', 'comingsoon')->name('comingsoon');
+Route::view('/', 'welcome')->name('welcome');
 
 Auth::routes();
-Route::group(['middleware' => ['auth','lang']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/', function () {
-        return redirect()->route("login")->with('success', 'Valider Avec succés ');        
-    });
+Route::view('/home', 'home')->name('home');
+Route::post('/search','HomeController@search')->name('search');
 
-    Route::get('/lang/{lang}', 'LangController@setLang')->name('lang');
-    Route::get('/home/inscription', 'InscriptionController@index');
-    Route::post('/home/inscriptions/ajouter','InscriptionController@ajouter');
+// Route::group(['middleware' => ['auth','lang']], function () {
+//     Route::get('/lang/{lang}', 'LangController@setLang')->name('lang');
+//     Route::get('/home/inscription', 'InscriptionController@index');
      
-});
+// });
 
 
 
@@ -103,6 +101,7 @@ Route::group(['prefix' => 'reglement','middleware' =>'lang', 'as' => 'reglement'
     Route::post('/update/{id_reglement}', ['as' => '.update', 'uses' => 'ReglementController@update']);    
 
     Route::get('/edit/{id_Reglement}', ['as' => '.edit', 'uses' => 'ReglementController@edit']);
+    Route::get('/view/{id_Reglement}', ['as' => '.view', 'uses' => 'ReglementController@view']);
     Route::get('/destroy/{id_Reglement}', ['as' => '.destroy', 'uses' => 'ReglementController@destroy']);
             
 });
