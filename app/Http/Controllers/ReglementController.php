@@ -63,7 +63,7 @@ class ReglementController extends Controller
         //         'refered_reglement' => null
         //     ]);
         $reglement->delete();    
-        return redirect()->route('reglement.methodes')->with('success', 'Suppresion Terminé ');
+        return redirect()->route('reglement.index')->with('success', 'Suppresion Terminé ');
     }
 
     public function store(Request $request)

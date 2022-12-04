@@ -44,6 +44,8 @@ Route::get('/admin', 'AdminController@admin')->name('admin');
 
 Route::view('/comingsoon', 'comingsoon')->name('comingsoon');
 Route::view('/', 'welcome')->name('welcome');
+Route::view('/rapport', 'rapport')->name('rapport');
+Route::view('/forum', 'forum')->name('forum');
 
 Auth::routes();
 Route::view('/home', 'home')->name('home');

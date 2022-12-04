@@ -33,7 +33,7 @@
                         <td>{{$reglement->ladate ?? ''}} </td>
                         <td>{{$reglement->organisme ?? ''}} </td>
                         <td>{{$reglement->secteur ?? ''}} </td>
-                        <td>{{$reglement->contenu ?? ''}} </td>
+                        <td>{{substr($reglement->contenu,0,20) ?? ''}} </td>
 
                         <td>
                             <div class="table-action">
@@ -42,6 +42,7 @@
                                     Voir
                                 </a>
                                 <a class="btn btn-outline-danger btn-sm"
+                                    onclick="return confirm('Etes Vous sure ?')"
                                     href="{{route('reglement.destroy',['reglement'=>$reglement->id])}}">
                                     Supprimer
                                 </a>

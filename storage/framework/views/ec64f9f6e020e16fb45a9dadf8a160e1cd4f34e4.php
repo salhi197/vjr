@@ -29,7 +29,7 @@
                         <td><?php echo e($reglement->ladate ?? ''); ?> </td>
                         <td><?php echo e($reglement->organisme ?? ''); ?> </td>
                         <td><?php echo e($reglement->secteur ?? ''); ?> </td>
-                        <td><?php echo e($reglement->contenu ?? ''); ?> </td>
+                        <td><?php echo e(substr($reglement->contenu,0,20) ?? ''); ?> </td>
 
                         <td>
                             <div class="table-action">
@@ -38,6 +38,7 @@
                                     Voir
                                 </a>
                                 <a class="btn btn-outline-danger btn-sm"
+                                    onclick="return confirm('Etes Vous sure ?')"
                                     href="<?php echo e(route('reglement.destroy',['reglement'=>$reglement->id])); ?>">
                                     Supprimer
                                 </a>
